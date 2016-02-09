@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <!DOCTYPE html>
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<title>
+
+API Evangelist
+
+</title>
+
+<!--Open Graph Stuff Take 2-->
+<meta property="og:title" content="API Evangelist" />
+<meta property="og:url" content="http://apievangelist.com/" />
+<meta property="og:image" content="http://s3.amazonaws.com/kinlane-productions/api-evangelist/t-shirts/KL_InApiWeTrust-1000.png" />
+<!--Open Graph Stuff Take 2-->
+
+  <!-- CSS -->
+  <style>
+
+		* {
+		  -webkit-box-sizing: border-box;
+		     -moz-box-sizing: border-box;
+		          box-sizing: border-box;
+		}
+
+		html,
+		body {
+		  margin: 0;
+		  padding: 0;
+		}
+
+		body {
+		  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+		  font-size: 16px;
+		  line-height: 1.5;
+		  color: #454441;
+		  background-color: #fff;
+		}
+		@media (min-width: 990px) {
+		  body {
+		    font-size: 18px;
+		  }
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+		  font-weight: 600;
+		  line-height: 1.25;
+		}
+		h1 {
+		  font-size: 24px;
+		}
+		h2 {
+		  font-size: 20px;
+		}
+		h3 {
+		  margin-top: 24px;
+		  font-size: 18px;
+		}
+		h4, h5, h6 {
+		  margin-top: 16px;
+		  font-size: 16px;
+		}
+
+		p {
+		  margin: 0 0 15px;
+		}
+
+		ul, ol {
+		  margin-bottom: 15px;
+		}
+
+		hr {
+		  position: relative;
+		  margin: 40px 0;
+		  border: 0;
+		  border-top: 1px solid #eee;
+		  border-bottom: 1px solid #fff;
+		}
+
+		strong {
+		  color: #222;
+		}
+
+		abbr {
+		  background-color: #eee;
+		  display: inline-block;
+		  padding: 3px;
+		  font-size: 13px;
+		  font-weight: bold;
+		  color: #555;
+		  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+		  text-transform: uppercase;
+		  border-radius: 3px;
+		}
+
+		code,
+		pre {
+		  font-family: Menlo, Monaco, "Courier New", monospace;
+		}
+		code {
+		  padding: .25em .5em;
+		  font-size: 85%;
+		  color: #bf616a;
+		  background-color: #f9f9f9;
+		  border-radius: 3px;
+		}
+		pre {
+		  display: block;
+		  margin: 0 0 14px;
+		  padding: 15px 20px;
+		  font-size: 16px;
+		  line-height: 1.4;
+		  white-space: pre;
+		  white-space: pre-wrap;
+		  word-break: break-all;
+		  word-wrap: break-word;
+		  background-color: #f9f9f9;
+		}
+		pre code {
+		  padding: 0;
+		  font-size: 100%;
+		  color: inherit;
+		  background-color: transparent;
+		}
+		.highlight {
+		  margin-bottom: 15px;
+		  border-radius: 4px;
+		}
+		.highlight pre {
+		  margin-bottom: 0;
+		}
+
+		/* Quotes */
+		blockquote {
+		  padding: 5px 30px 5px 25px;
+		  margin: 15px 0;
+		  border-left: 5px solid #eee;
+		}
+		blockquote p {
+		  margin-bottom: 0;
+		  color: #7a7a7a;
+		  text-indent: -0.4em;
+		}
+		blockquote p:before {
+		  content: '\201C';
+		}
+		blockquote p:after {
+		  content: '\201D';
+		}
+
+		/*
+		 * Custom type
+		 *
+		 * Extend paragraphs with `.lead` for larger introductory text.
+		 */
+
+		.lead {
+		  font-size: 20px;
+		  font-weight: 300;
+		}
+		@media (min-width: 990px) {
+		  .lead {
+		    font-size: 24px;
+		  }
+		}
+
+
+		/*
+		 * Links
+		 *
+		 * No `:visited` state is required by default (browsers will use `a`). `:focus`
+		 * is linked to `:hover` for basic accessibility.
+		 */
+
+		a {
+		  font-weight: 600;
+		  color: #222;
+		  text-decoration: none;
+		}
+		a:hover,
+		a:focus {
+		  text-decoration: underline;
+		}
+
+
+		/*
+		 * Masthead
+		 *
+		 * Sidebar banner for housing site name, intro, and colophon (footer).
+		 */
+
+		/* Sidebar masthead */
+		.masthead {
+		  color: #fff;
+		  background-color: #000;
+		  padding: 0px;
+		  margin: 0px;
+		  border: 1px solid #FFF;
+      vertical-align: top;
+		}
+		.masthead-inner {
+      vertical-align: text-top;
+		}
+
+		.masthead h2 {
+		  font-family: "Courier New";
+		  font-size: 24px;
+		}
+
+		.masthead a {
+		  color: #fff;
+		}
+
+		/* Footer area of masthead */
+		.colophon {
+		  margin: 0px;
+		  padding: 0px;
+		  color: rgba(255,255,255,.5);
+		}
+		.colophon-links {
+		  margin: 0px;
+		  padding: 0px;
+		  list-style: none;
+		  size: 65%;
+		}
+		.colophon-links li {
+		  color: inherit;
+		}
+
+		/* Responsive masthead */
+		@media (min-width: 768px) {
+		  .masthead-inner {
+		    padding: 40px;
+        vertical-align: text-top;
+		  }
+		}
+		@media (min-width: 990px) {
+		  /* Fix the masthead to the side for impact and awesomeness */
+		  .masthead {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    bottom: 0;
+		    width: 25%;
+		    margin-bottom: 0;
+		  }
+		  .masthead-inner {
+		    position: absolute;
+		    bottom: 0;
+		    right: 0;
+		    left: 0;
+        vertical-align: text-top;
+		  }
+		  .masthead h1 {
+		    font-size: 64px;
+		  }
+		  .colophon {
+		    margin-top: 15px;
+		  }
+		}
+
+
+		/* Container
+		 *
+		 * Align the contents of the site above the proper threshold with some margin-fu
+		 * with a 25%-wide `.masthead`.
+		 */
+
+		.content {
+		  padding: 20px 20px;
+		}
+
+		/* Center container in available real estate */
+		@media (min-width: 990px) {
+		  .content {
+		    padding: 40px 0;
+		  }
+		  .container {
+		    width: 55%;
+		    margin-left: 35%;
+		    margin-right: 10%;
+		  }
+		}
+
+
+		/*
+		 * Posts
+		 *
+		 * Each post is wrapped in `.post`. Used on default and post layouts.
+		 */
+
+		/* Single post */
+		.post {
+		  margin-bottom: 40px;
+		}
+		@media (min-width: 990px) {
+		  .post {
+		    margin-bottom: 60px;
+		  }
+		}
+
+		/* Meta data line below post title */
+		.post-date {
+		  display: block;
+		  margin: -10px 0 10px;
+		  color: #9a9a9a;
+		}
+
+		/* Related posts */
+		.related {
+		  padding-top: 20px;
+		  padding-bottom: 40px;
+		  border-top: 1px solid #eee;
+		}
+		.related-posts {
+		  padding-left: 0;
+		  list-style: none;
+		}
+		.related-posts h3 {
+		  margin-top: 0;
+		}
+		.related-posts li small {
+		  font-size: 75%;
+		  color: #999;
+		}
+		.related-posts li a:hover {
+		  color: #000;
+		  text-decoration: none;
+		}
+		.related-posts li a:hover small {
+		  color: inherit;
+		}
+
+
+		/*
+		 * Pagination
+		 *
+		 * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
+		 * there are no more previous or next posts to show.
+		 */
+
+		.pagination {
+		  overflow: hidden; /* clearfix */
+		  margin-top: 40px;
+		  font-weight: bold;
+		  color: #ccc;
+		  text-align: center;
+		  border-top: 1px solid #eee;
+		}
+		/* Pagination should float when space is plentiful */
+		@media (min-width: 990px) {
+		  .pagination {
+		    margin-bottom: 60px;
+		    border: 1px solid #eee;
+		  }
+		}
+
+		.pagination a,
+		.pagination span {
+		  float: left;
+		  width: 50%;
+		  padding: 20px;
+		}
+		.pagination a:first-child,
+		.pagination span:first-child {
+		  border-right: 1px solid #eee;
+		}
+		.pagination a:hover {
+		  text-decoration: none;
+		  background-color: #f5f5f5;
+		}
+
+
+		/*
+		 * Reverse layout
+		 *
+		 * Flip the orientation of the page by placing the `.masthead` on the right.
+		 */
+
+		@media (min-width: 990px) {
+		  .layout-reverse .masthead {
+		    left: auto;
+		    right: 0;
+		  }
+		  .layout-reverse .container {
+		    margin-left: 10%;
+		    margin-right: 35%;
+		  }
+		}
+
+
+		/*
+		 * Themes
+		 *
+		 * As of v1.1, Hyde includes optional themes to color the sidebar and links
+		 * within blog posts. To use, add the class of your choosing to the `body`.
+		 */
+
+		/* Base16 (http://chriskempson.github.io/base16/#default) */
+
+		/* Red */
+		.theme-base-08 .masthead {
+		  background-color: #ac4142;
+		}
+		.theme-base-08 .container a,
+		.theme-base-08 .related-posts li a:hover {
+		  color: #ac4142;
+		}
+
+		/* Orange */
+		.theme-base-09 .masthead {
+		  background-color: #d28445;
+		}
+		.theme-base-09 .container a,
+		.theme-base-09 .related-posts li a:hover {
+		  color: #d28445;
+		}
+
+		/* Yellow */
+		.theme-base-0a .masthead {
+		  background-color: #f4bf75;
+		}
+		.theme-base-0a .container a,
+		.theme-base-0a .related-posts li a:hover {
+		  color: #f4bf75;
+		}
+
+		/* Green */
+		.theme-base-0b .masthead {
+		  background-color: #90a959;
+		}
+		.theme-base-0b .container a,
+		.theme-base-0b .related-posts li a:hover {
+		  color: #90a959;
+		}
+
+		/* Cyan */
+		.theme-base-0c .masthead {
+		  background-color: #75b5aa;
+		}
+		.theme-base-0c .container a,
+		.theme-base-0c .related-posts li a:hover {
+		  color: #75b5aa;
+		}
+
+		/* Blue */
+		.theme-base-0d .masthead {
+		  background-color: #6a9fb5;
+		}
+		.theme-base-0d .container a,
+		.theme-base-0d .related-posts li a:hover {
+		  color: #6a9fb5;
+		}
+
+		/* Magenta */
+		.theme-base-0e .masthead {
+		  background-color: #aa759f;
+		}
+		.theme-base-0e .container a,
+		.theme-base-0e .related-posts li a:hover {
+		  color: #aa759f;
+		}
+
+		/* Brown */
+		.theme-base-0f .masthead {
+		  background-color: #8f5536;
+		}
+		.theme-base-0f .container a,
+		.theme-base-0f .related-posts li a:hover {
+		  color: #8f5536;
+		}
+
+		.footer{
+			height: 50px;
+			width: 100%;
+			text-align: center;
+		}
+
+		.footer ul{
+			display: inline;
+		}
+
+		.footer ul li{
+			list-style: none;
+			display: inline;
+			color: #000;
+			padding-right: 10px;
+		}
+
+		.footer ul li a{
+			color: #000;
+			font-weight: bold;
+			font-size: 14px;
+			text-decoration: underline;
+		}
+
+		.footer ul li a:hover{
+			color: #CCC;
+			font-weight: bold;
+			font-size: 14px;
+			text-decoration: underline;
+		}
+
+		.sharebuttons{
+			text-align: center;
+		}
+		.sharebuttons li{
+			text-align: center;
+			padding: 5px;
+			list-style: none;
+			display: block;
+		}
+
+		.hll { background-color: #ffffcc }
+		 /*{ background: #f0f3f3; }*/
+		.c { color: #999; } /* Comment */
+		.err { color: #AA0000; background-color: #FFAAAA } /* Error */
+		.k { color: #006699; } /* Keyword */
+		.o { color: #555555 } /* Operator */
+		.cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+		.cp { color: #009999 } /* Comment.Preproc */
+		.c1 { color: #999; } /* Comment.Single */
+		.cs { color: #999; } /* Comment.Special */
+		.gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+		.ge { font-style: italic } /* Generic.Emph */
+		.gr { color: #FF0000 } /* Generic.Error */
+		.gh { color: #003300; } /* Generic.Heading */
+		.gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+		.go { color: #AAAAAA } /* Generic.Output */
+		.gp { color: #000099; } /* Generic.Prompt */
+		.gs { } /* Generic.Strong */
+		.gu { color: #003300; } /* Generic.Subheading */
+		.gt { color: #99CC66 } /* Generic.Traceback */
+		.kc { color: #006699; } /* Keyword.Constant */
+		.kd { color: #006699; } /* Keyword.Declaration */
+		.kn { color: #006699; } /* Keyword.Namespace */
+		.kp { color: #006699 } /* Keyword.Pseudo */
+		.kr { color: #006699; } /* Keyword.Reserved */
+		.kt { color: #007788; } /* Keyword.Type */
+		.m { color: #FF6600 } /* Literal.Number */
+		.s { color: #d44950 } /* Literal.String */
+		.na { color: #4f9fcf } /* Name.Attribute */
+		.nb { color: #336666 } /* Name.Builtin */
+		.nc { color: #00AA88; } /* Name.Class */
+		.no { color: #336600 } /* Name.Constant */
+		.nd { color: #9999FF } /* Name.Decorator */
+		.ni { color: #999999; } /* Name.Entity */
+		.ne { color: #CC0000; } /* Name.Exception */
+		.nf { color: #CC00FF } /* Name.Function */
+		.nl { color: #9999FF } /* Name.Label */
+		.nn { color: #00CCFF; } /* Name.Namespace */
+		.nt { color: #2f6f9f; } /* Name.Tag */
+		.nv { color: #003333 } /* Name.Variable */
+		.ow { color: #000000; } /* Operator.Word */
+		.w { color: #bbbbbb } /* Text.Whitespace */
+		.mf { color: #FF6600 } /* Literal.Number.Float */
+		.mh { color: #FF6600 } /* Literal.Number.Hex */
+		.mi { color: #FF6600 } /* Literal.Number.Integer */
+		.mo { color: #FF6600 } /* Literal.Number.Oct */
+		.sb { color: #CC3300 } /* Literal.String.Backtick */
+		.sc { color: #CC3300 } /* Literal.String.Char */
+		.sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+		.s2 { color: #CC3300 } /* Literal.String.Double */
+		.se { color: #CC3300; } /* Literal.String.Escape */
+		.sh { color: #CC3300 } /* Literal.String.Heredoc */
+		.si { color: #AA0000 } /* Literal.String.Interpol */
+		.sx { color: #CC3300 } /* Literal.String.Other */
+		.sr { color: #33AAAA } /* Literal.String.Regex */
+		.s1 { color: #CC3300 } /* Literal.String.Single */
+		.ss { color: #FFCC33 } /* Literal.String.Symbol */
+		.bp { color: #336666 } /* Name.Builtin.Pseudo */
+		.vc { color: #003333 } /* Name.Variable.Class */
+		.vg { color: #003333 } /* Name.Variable.Global */
+		.vi { color: #003333 } /* Name.Variable.Instance */
+		.il { color: #FF6600 } /* Literal.Number.Integer.Long */
+
+		.css .o,
+		.css .o + .nt,
+		.css .nt + .nt { color: #999; }
+
+		/* latin-ext */
+		@font-face {
+		  font-family: 'Abril Fatface';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Abril Fatface'), local('AbrilFatface-Regular'), url(http://fonts.gstatic.com/s/abrilfatface/v8/X1g_KwGeBV3ajZIXQ9VnDtiatsHTxQkGvnPUXHFXIVY.woff2) format('woff2');
+		  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+		}
+		/* latin */
+		@font-face {
+		  font-family: 'Abril Fatface';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Abril Fatface'), local('AbrilFatface-Regular'), url(http://fonts.gstatic.com/s/abrilfatface/v8/X1g_KwGeBV3ajZIXQ9VnDgheAf6_SYpqVBPUrkDA9Dk.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+		/* cyrillic-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTaOCaDZZVv73zpFSwE4Va2k.woff2) format('woff2');
+		  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+		}
+		/* cyrillic */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTdWlIHla9B101mdmTHF3-q0.woff2) format('woff2');
+		  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+		}
+		/* devanagari */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTVMRqIICSqEqsEoDxn8ddME.woff2) format('woff2');
+		  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+		}
+		/* greek-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTaWHppw2c1XOp6B2yhU8z7c.woff2) format('woff2');
+		  unicode-range: U+1F00-1FFF;
+		}
+		/* greek */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTeji7H8UD0RUWSM-55zrR4g.woff2) format('woff2');
+		  unicode-range: U+0370-03FF;
+		}
+		/* vietnamese */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTcw0n1X1lV_hRH3yZFpIE9Q.woff2) format('woff2');
+		  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+		}
+		/* latin-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTSYtBUPDK3WL7KRKS_3q7OE.woff2) format('woff2');
+		  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+		}
+		/* latin */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTRampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+		/* cyrillic-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m5Bw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+		}
+		/* cyrillic */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+		}
+		/* devanagari */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/ttwNtsRpgsxVmgGGmiUOEpBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+		}
+		/* greek-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/LWCjsQkB6EMdfHrEVqA1KZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+1F00-1FFF;
+		}
+		/* greek */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/xozscpT2726on7jbcb_pApBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+0370-03FF;
+		}
+		/* vietnamese */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/59ZRklaO5bWGqF5A9baEEZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+		}
+		/* latin-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+		}
+		/* latin */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+		/* cyrillic-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSqOCaDZZVv73zpFSwE4Va2k.woff2) format('woff2');
+		  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+		}
+		/* cyrillic */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNStWlIHla9B101mdmTHF3-q0.woff2) format('woff2');
+		  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+		}
+		/* devanagari */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSlMRqIICSqEqsEoDxn8ddME.woff2) format('woff2');
+		  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+		}
+		/* greek-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSqWHppw2c1XOp6B2yhU8z7c.woff2) format('woff2');
+		  unicode-range: U+1F00-1FFF;
+		}
+		/* greek */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSuji7H8UD0RUWSM-55zrR4g.woff2) format('woff2');
+		  unicode-range: U+0370-03FF;
+		}
+		/* vietnamese */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSsw0n1X1lV_hRH3yZFpIE9Q.woff2) format('woff2');
+		  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+		}
+		/* latin-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSiYtBUPDK3WL7KRKS_3q7OE.woff2) format('woff2');
+		  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+		}
+		/* latin */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 600;
+		  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNShampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+		/* cyrillic-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzKOCaDZZVv73zpFSwE4Va2k.woff2) format('woff2');
+		  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+		}
+		/* cyrillic */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzNWlIHla9B101mdmTHF3-q0.woff2) format('woff2');
+		  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+		}
+		/* devanagari */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzFMRqIICSqEqsEoDxn8ddME.woff2) format('woff2');
+		  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+		}
+		/* greek-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzKWHppw2c1XOp6B2yhU8z7c.woff2) format('woff2');
+		  unicode-range: U+1F00-1FFF;
+		}
+		/* greek */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOji7H8UD0RUWSM-55zrR4g.woff2) format('woff2');
+		  unicode-range: U+0370-03FF;
+		}
+		/* vietnamese */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzMw0n1X1lV_hRH3yZFpIE9Q.woff2) format('woff2');
+		  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+		}
+		/* latin-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCYtBUPDK3WL7KRKS_3q7OE.woff2) format('woff2');
+		  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+		}
+		/* latin */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+		/* cyrillic-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBjh7e2W4hm9ZA_z4UdP-cQU.woff2) format('woff2');
+		  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+		}
+		/* cyrillic */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBpwaoV4em0XsfI20r5f4EOM.woff2) format('woff2');
+		  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+		}
+		/* devanagari */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBshIsjW5fEZuOum29gsYqpo.woff2) format('woff2');
+		  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+		}
+		/* greek-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBiMV0bfL-jZ99U6bs5jsL-w.woff2) format('woff2');
+		  unicode-range: U+1F00-1FFF;
+		}
+		/* greek */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBslLAZC6mdXApAHSjvz6_xo.woff2) format('woff2');
+		  unicode-range: U+0370-03FF;
+		}
+		/* vietnamese */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBocW2RraEATWgv1xznQqawU.woff2) format('woff2');
+		  unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+		}
+		/* latin-ext */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBogt8zh49GR1Df_uPwTXpxw.woff2) format('woff2');
+		  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+		}
+		/* latin */
+		@font-face {
+		  font-family: 'Open Sans';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBogp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+
+  </style>
+
+  <style type="text/css">
+    .gist {width:100% !important;}
+    .gist-file
+    .gist-data {max-height: 450px;max-width: 100%;}
+  </style>
+
+  <!-- Icons -->
+  <link rel="shortcut icon" type="image/x-icon" href="http://apievangelist.com/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="http://apievangelist.com/favicon.ico">
+
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="https://s3.amazonaws.com/kinlane-productions/js/mustache.js" type="text/javascript"></script>
+
+	<link rel="api" type="application/apis+json" href="https://kin-lane.github.io/master/apis.json" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/blog.xml">
+
+</head>
+
+
+  <body>
+
+    <header class="masthead">
+      <div class="masthead-inner" align="center">
+
+		  <h2 style="font-size: 20px;">{"API Evangelist"}</h2>
+
+      <!-- Winning in the API Economy
+    	<a href="http://bit.ly/1cHBhd5" target="_blank"><img src="https://s3.amazonaws.com/kinlane-productions/whitepapers/3scale/report-image-winning-in-api-economy.png" width="42%" style="border: 1px solid #FFF;" title="Winning in the API Economy" /></a>
+      -->
+
+      <!-- API Design -->
+      <a href="http://apis.how/xzca4kr2wb" target="_blank"><img src="https://s3.amazonaws.com/kinlane-productions/whitepapers/3scale/report-image-api-design.png" width="45%" style="border: 1px solid #FFF;" title="API Design Providers Guide" /></a>
+
+      <!-- Platform Visiion of Giants
+      <a href=http://bit.ly/1Lcnvg8"" target="_blank"><img src="https://s3.amazonaws.com/kinlane-productions/whitepapers/3scale/Platform-Vision-of-Giants-cover-e1438126737396.png" width="42%" style="border: 1px solid #FFF;" title="The Platform Vision of API Giants" /></a>
+      -->
+
+        <div class="colophon">
+          <ul class="colophon-links">
+            <li>
+              <a href="/">API 100K View</a>
+            </li>
+            <li>
+              <a href="/blog/">The Blog <a href="http://alpha.apievangelist.com" style="font-size: 11px;">(alpha)</a> <a href="http://alternate.apievangelist.com" style="font-size: 11px;">(alternate)</a> <a href="/archive.html" style="font-size: 11px;">(archive)</a></a>
+            </li>
+            <li>
+              <a href="http://kinlane.com/about/">About Kin Lane</a>
+            </li>
+            <li>
+              <a href="/support">Support</a> /  <a href="/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <script id="parterListingTemplate" type="text/template">
+            
+            <a href="{{url}}" target="_blank" title="{{title}}">
+           		<img src="{{logo}}" width="{{width}}" style="padding: 1px;" />
+            </a>
+            
+        </script>
+
+        <div id="partnerListingContainer" align="center" style="background-color:#FFF; margin-top: 20px; padding: 10px 10px 10px 10px; width: 60%; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border: 3px solid #FFFFFF; margin-bottom: 7px;">
+
+		</div>
+
+      </div>
+    </header>
+
+    <div class="content container">
+
+    	<p align="center"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist/api-evangelist-logo-400.png" align="center" width="65%" style="padding-bottom: 10px;" /></p>
+
+      	<p style="font-size: 14px; padding:5px;">Welcome to API Evangelist. My name is Kin Lane, and this is my domain, where I work to better understand the world of the Application Programming Interface, usually referred to simplas as API. APIs are touching almost every aspect of our increasingly digital lives. I keep all of my research listed here on the home page, and is something that I am updating regularly, so come back often, read my blog(s), and follow me on the twitterz (<a href="https://twitter.com/kinlane">@kinlane</a> and <a href="https://twitter.com/apievangelist">@apievangelist</a>) for the latest.</p>
+<p align="center"><a href="http://101.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-api-101.png" width="175" /></a></p>
+
+<p style="font-size: 18px; font-weight: bold">My API Life Cycle Research:</p>
+<table cellpadding="5" cellspacing="5" width="100%">
+	<tr>
+		<td width="100" align="center">
+		<a href="http://design.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-design.png" width="40" /></a>
+		</td>
+		<td width="50%"><a href="http://design.apievangelist.com">Design</a></td>
+		<td align="center" width="30%"><a href="http://design.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://design.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"><a href="http://bit.ly/1Jk6NOx"><img src="https://s3.amazonaws.com/kinlane-productions/pdf-icon.png" width="25" /></a></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://hypermedia.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-hypermedia.png" width="40" /></a>
+		</td>
+		<td><a href="http://hypermedia.apievangelist.com">Hypermedia</a></td>
+		<td align="center" width="30%"><a href="http://hypermedia.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://hypermedia.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://definitions.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/api-commons/api-commons-icon.png" width="40" /></a>
+		</td>
+		<td width="50%"><a href="http://definitions.apievangelist.com">Definitions</a></td>
+		<td align="center" width="30%"><a href="http://definitions.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://definitions.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"><a href="http://bit.ly/1ISZ1I9"><img src="https://s3.amazonaws.com/kinlane-productions/pdf-icon.png" width="25" /></a></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://dns.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-globe.png" width="40" /></a>
+		</td>
+		<td><a href="http://dns.apievangelist.com">DNS</a></td>
+		<td align="center" width="30%"><a href="http://dns.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://dns.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://deployment.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-api-deployment-2.jpg" width="40" /></a>
+		</td>
+		<td><a href="http://deployment.apievangelist.com">Deployment</a></td>
+		<td align="center" width="30%"><a href="http://deployment.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://deployment.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"><a href="http://bit.ly/1ISZaev"><img src="https://s3.amazonaws.com/kinlane-productions/pdf-icon.png" width="25" /></a></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://virtualization.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-virtulization.png" width="40" /></a>
+		</td>
+		<td><a href="http://virtualization.apievangelist.com">Virtualization</a></td>
+		<td align="center" width="30%"><a href="http://virtualization.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://virtualization.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://containers.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-shipping-container.png" width="40" /></a>
+		</td>
+		<td><a href="http://containers.apievangelist.com">Containers</a></td>
+		<td align="center" width="30%"><a href="http://containers.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://containers.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://management.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-tools.png" width="40" /></a>
+		</td>
+		<td><a href="http://management.apievangelist.com">Management</a></td>
+		<td align="center" width="30%"><a href="http://management.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://management.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"><a href="http://bit.ly/1JZBO9f"><img src="https://s3.amazonaws.com/kinlane-productions/pdf-icon.png" width="25" /></a></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://documentation.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-documentation.png" width="40" /></a>
+		</td>
+		<td><a href="http://documentation.apievangelist.com">Documentation</a></td>
+		<td align="center" width="30%"><a href="http://documentation.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://documentation.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://support.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-support.png" width="40" /></a>
+		</td>
+		<td><a href="http://support.apievangelist.com">Support</a></td>
+		<td align="center" width="30%"><a href="http://support.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://support.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://roadmap.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-roadmap.png" width="40" /></a>
+		</td>
+		<td><a href="http://roadmap.apievangelist.com">Roadmap</a></td>
+		<td align="center" width="30%"><a href="http://roadmap.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://roadmap.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://monitoring.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-heart-monitor.png" width="40" /></a>
+		</td>
+		<td><a href="http://monitoring.apievangelist.com">Monitoring</a></td>
+		<td align="center" width="30%"><a href="http://monitoring.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://monitoring.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://testing.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-testing.png" width="40" /></a>
+		</td>
+		<td><a href="http://testing.apievangelist.com">Testing</a></td>
+		<td align="center" width="30%"><a href="http://testing.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://testing.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://performance.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-performance.png" width="40" /></a>
+		</td>
+		<td><a href="http://performance.apievangelist.com">Performance</a></td>
+		<td align="center" width="30%"><a href="http://performance.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://performance.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://authentication.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-authentication-2.png" width="40" /></a>
+		</td>
+		<td><a href="http://authentication.apievangelist.com">Authentication</a></td>
+		<td align="center" width="30%"><a href="http://authentication.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://authentication.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://security.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-padlock.png" width="35" /></a>
+		</td>
+		<td width="50%"><a href="http://security.apievangelist.com">Security</a></td>
+		<td align="center" width="30%"><a href="http://security.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://security.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://terms-of-service.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-terms-of-use.png" width="40" /></a>
+		</td>
+		<td><a href="http://terms-of-service.apievangelist.com">Terms of Services (TOS)</a></td>
+		<td align="center" width="30%"><a href="http://terms-of-service.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://terms-of-service.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://privacy.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-privacy.png" width="40" /></a>
+		</td>
+		<td><a href="http://privacy.apievangelist.com">Privacy</a></td>
+		<td align="center" width="30%"><a href="http://privacy.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://privacy.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://licensing.apievangelist.com"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/blog/bw-licensing-stack.png" width="40" /></a>
+		</td>
+		<td><a href="http://licensing.apievangelist.com">Licensing</a></td>
+		<td align="center" width="30%"><a href="http://licensing.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://licensing.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://branding.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-brand.png" width="40" /></a>
+		</td>
+		<td><a href="http://branding.apievangelist.com">Branding</a></td>
+		<td align="center" width="30%"><a href="http://branding.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://branding.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://regulation.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-government-regulation.png" width="40" /></a>
+		</td>
+		<td><a href="http://regulation.apievangelist.com">Regulation</a></td>
+		<td align="center" width="30%"><a href="http://regulation.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://regulation.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="15%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://patents.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-certificate.png" width="40" /></a>
+		</td>
+		<td width="50%"><a href="http://patents.apievangelist.com">Patents</a></td>
+		<td align="center" width="30%"><a href="http://patents.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="20%"><a href="http://patents.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://discovery.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-api-discovery.png" width="40" /></a>
+		</td>
+		<td><a href="http://discovery.apievangelist.com">Discovery</a></td>
+		<td align="center" width="30%"><a href="http://discovery.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://discovery.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://client.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-client.png" width="40" /></a>
+		</td>
+		<td><a href="http://client.apievangelist.com">Client</a></td>
+		<td align="center" width="30%"><a href="http://client.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://client.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://bots.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-robots.jpeg" width="40" /></a>
+		</td>
+		<td><a href="http://bots.apievangelist.com">Bots</a></td>
+		<td align="center" width="30%"><a href="http://bots.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://bots.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://ide.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-ide.png" width="40" /></a>
+		</td>
+		<td><a href="http://ide.apievangelist.com">IDE</a></td>
+		<td align="center" width="30%"><a href="http://ide.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://ide.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://sdk.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-sdk.png" width="40" /></a>
+		</td>
+		<td><a href="http://sdk.apievangelist.com">SDK</a></td>
+		<td align="center" width="30%"><a href="http://sdk.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://sdk.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://embeddable.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/api-evangelist/services/bw-embeddable.png" width="40" /></a>
+		</td>
+		<td><a href="http://embeddable.apievangelist.com">Embeddable</a></td>
+		<td align="center" width="30%"><a href="http://embeddable.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://embeddable.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://visualization.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-visualization.png" width="40" /></a>
+		</td>
+		<td><a href="http://visualization.apievangelist.com">Visualization</a></td>
+		<td align="center" width="30%"><a href="http://visualization.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://visualization.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://webhooks.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/webhooks.png" width="40" /></a>
+		</td>
+		<td><a href="http://webhooks.apievangelist.com">Webhooks</a></td>
+		<td align="center" width="30%"><a href="http://webhooks.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://webhooks.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://aggregation.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/api-evangelist/trends/aggregation-trend.png" width="45" /></a>
+		</td>
+		<td><a href="http://aggregation.apievangelist.com">Aggregation</a></td>
+		<td align="center" width="30%"><a href="http://aggregation.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://aggregation.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://scraping.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-scraping.png" width="40" /></a>
+		</td>
+		<td><a href="http://scraping.apievangelist.com">Scraping</a></td>
+		<td align="center" width="30%"><a href="http://scraping.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://scraping.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://reciprocity.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-reciprocity2.png" width="40" /></a>
+		</td>
+		<td><a href="http://reciprocity.apievangelist.com">Reciprocity</a></td>
+		<td align="center" width="30%"><a href="http://reciprocity.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://reciprocity.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://realtime.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-real-time.png" width="40" /></a>
+		</td>
+		<td><a href="http://realtime.apievangelist.com">Real-Time</a></td>
+		<td align="center" width="30%"><a href="http://realtime.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://realtime.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://voice.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-microphone.png" width="40" /></a>
+		</td>
+		<td><a href="http://voice.apievangelist.com">Voice</a></td>
+		<td align="center" width="30%"><a href="http://voice.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://voice.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://spreadsheets.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-excel-icon.jpg" width="40" /></a>
+		</td>
+		<td><a href="http://spreadsheets.apievangelist.com">Spreadsheets</a></td>
+		<td align="center" width="30%"><a href="http://spreadsheets.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://spreadsheets.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://monetization.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-gears-questions.png" width="40" /></a>
+		</td>
+		<td><a href="http://monetization.apievangelist.com">Monetization</a></td>
+		<td align="center" width="30%"><a href="http://monetization.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://monetization.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://plans.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-plan.png" width="40" /></a>
+		</td>
+		<td><a href="http://plans.apievangelist.com">Plans</a></td>
+		<td align="center" width="30%"><a href="http://plans.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://plans.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://partners.apievangelist.com"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-partner.png" width="40" /></a>
+		</td>
+		<td><a href="http://partners.apievangelist.com">Partners</a></td>
+		<td align="center" width="30%"><a href="http://partners.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://partners.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://evangelism.apievangelist.com"><img src="http://s3.amazonaws.com/kinlane-productions/api-evangelist/t-shirts/KL_InApiWeTrust-1000.png" width="40" /></a>
+		</td>
+		<td><a href="http://evangelism.apievangelist.com">Evangelism</a></td>
+		<td align="center" width="30%"><a href="http://evangelism.apievangelist.com">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://evangelism.apievangelist.com/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+</table>
+<br />
+<p style="font-size: 18px; font-weight: bold">Stacks <span style="font-size: 12px;">(my newest area of research, so it is even more a work in progress than other areas)</span></p>
+<table cellpadding="5" cellspacing="5" width="100%">
+	<tr>
+		<td width="100" align="center">
+			<a href="http://accounting.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-accounting.png" width="40" /></a>
+		</td>
+		<td width="50%"><a href="http://accounting.stack.network">Accounting APIs</a></td>
+		<td align="center" width="30%"><a href="http://accounting.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://accounting.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://advertising.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-advertising.png" width="40" /></a>
+		</td>
+		<td><a href="http://advertising.stack.network">Advertising APIs</a></td>
+		<td align="center" width="30%"><a href="http://advertising.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://advertising.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://audio.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-audio.png" width="40" /></a>
+		</td>
+		<td><a href="http://audio.stack.network">Audio APIs</a></td>
+		<td align="center" width="30%"><a href="http://audio.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://audio.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://auto.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-auto.png" width="40" /></a>
+		</td>
+		<td><a href="http://auto.stack.network">Auto APIs</a></td>
+		<td align="center" width="30%"><a href="http://auto.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://auto.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://band.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-band.png" width="40" /></a>
+		</td>
+		<td><a href="http://band.stack.network">Band APIs</a></td>
+		<td align="center" width="30%"><a href="http://band.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://band.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://businesses.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-businesses.png" width="40" /></a>
+		</td>
+		<td><a href="http://businesses.stack.network">Businesses APIs</a></td>
+		<td align="center" width="30%"><a href="http://businesses.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://businesses.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://commerce.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-commerce.png" width="40" /></a>
+		</td>
+		<td><a href="http://commerce.stack.network">Commerce APIs</a></td>
+		<td align="center" width="30%"><a href="http://commerce.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://commerce.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://compute.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-compute.png" width="40" /></a>
+		</td>
+		<td><a href="http://compute.stack.network">Compute APIs</a></td>
+		<td align="center" width="30%"><a href="http://compute.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://compute.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://content.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-content.png" width="40" /></a>
+		</td>
+		<td><a href="http://content.stack.network">Content APIs</a></td>
+		<td align="center" width="30%"><a href="http://content.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://content.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://documents.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-documents.png" width="40" /></a>
+		</td>
+		<td><a href="http://documents.stack.network">Documents APIs</a></td>
+		<td align="center" width="30%"><a href="http://documents.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://documents.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://drones.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-drones.png" width="40" /></a>
+		</td>
+		<td><a href="http://drones.stack.network">Drone APIs</a></td>
+		<td align="center" width="30%"><a href="http://drones.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://drones.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://education.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-education.png" width="40" /></a>
+		</td>
+		<td><a href="http://education.stack.network">Education APIs</a></td>
+		<td align="center" width="30%"><a href="http://education.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://education.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://email.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-email.png" width="40" /></a>
+		</td>
+		<td><a href="http://email.stack.network">Email APIs</a></td>
+		<td align="center" width="30%"><a href="http://email.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://email.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://energy.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-energy.png" width="40" /></a>
+		</td>
+		<td><a href="http://energy.stack.network">Energy APIs</a></td>
+		<td align="center" width="30%"><a href="http://energy.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://energy.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://environment.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-environment.png" width="40" /></a>
+		</td>
+		<td><a href="http://environment.stack.network">Environment APIs</a></td>
+		<td align="center" width="30%"><a href="http://environment.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://environment.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://events.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-events.png" width="40" /></a>
+		</td>
+		<td><a href="http://events.stack.network">Events APIs</a></td>
+		<td align="center" width="30%"><a href="http://events.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://events.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://financial.news.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-financial-news.png" width="40" /></a>
+		</td>
+		<td><a href="http://financial.news.stack.network">Financial News APIs</a></td>
+		<td align="center" width="30%"><a href="http://financial.news.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://financial.news.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://city.government.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-government.png" width="40" /></a>
+		</td>
+		<td><a href="http://city.government.stack.network">City Government APIs</a></td>
+		<td align="center" width="30%"><a href="http://city.government.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://city.government.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://state.government.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-government.png" width="40" /></a>
+		</td>
+		<td><a href="http://state.government.stack.network">State Government APIs</a></td>
+		<td align="center" width="30%"><a href="http://state.government.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://state.government.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://federal.government.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-government.png" width="40" /></a>
+		</td>
+		<td><a href="http://federal.government.stack.network">Federal Government APIs</a></td>
+		<td align="center" width="30%"><a href="http://federal.government.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://federal.government.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://healthcare.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-healthcare.png" width="40" /></a>
+		</td>
+		<td><a href="http://healthcare.stack.network">Healthcare APIs</a></td>
+		<td align="center" width="30%"><a href="http://healthcare.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://healthcare.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://home.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-home.png" width="40" /></a>
+		</td>
+		<td><a href="http://home.stack.network">Home APIs</a></td>
+		<td align="center" width="30%"><a href="http://home.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://home.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://images.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-images.png" width="40" /></a>
+		</td>
+		<td><a href="http://images.stack.network">Image APIs</a></td>
+		<td align="center" width="30%"><a href="http://images.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://images.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://language.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-language.png" width="40" /></a>
+		</td>
+		<td><a href="http://language.stack.network">Language APIs</a></td>
+		<td align="center" width="30%"><a href="http://language.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://language.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://libraries.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-libraries.png" width="40" /></a>
+		</td>
+		<td><a href="http://libraries.stack.network">Library APIs</a></td>
+		<td align="center" width="30%"><a href="http://libraries.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://libraries.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://links.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-links.png" width="40" /></a>
+		</td>
+		<td><a href="http://links.stack.network">Link APIs</a></td>
+		<td align="center" width="30%"><a href="http://links.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://links.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://mapping.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-mapping.png" width="40" /></a>
+		</td>
+		<td><a href="http://mapping.stack.network">Mapping APIs</a></td>
+		<td align="center" width="30%"><a href="http://mapping.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://mapping.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://messaging.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-messaging.png" width="40" /></a>
+		</td>
+		<td><a href="http://messaging.stack.network">Messaging APIs</a></td>
+		<td align="center" width="30%"><a href="http://messaging.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://messaging.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://mms.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-mms.png" width="40" /></a>
+		</td>
+		<td><a href="http://mms.stack.network">MMS APIs</a></td>
+		<td align="center" width="30%"><a href="http://mms.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://mms.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://movies.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-movies.png" width="40" /></a>
+		</td>
+		<td><a href="http://movies.stack.network">Movies APIs</a></td>
+		<td align="center" width="30%"><a href="http://movies.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://movies.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://music.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-music.png" width="40" /></a>
+		</td>
+		<td><a href="http://music.stack.network">Music APIs</a></td>
+		<td align="center" width="30%"><a href="http://music.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://music.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://news.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-news.png" width="40" /></a>
+		</td>
+		<td><a href="http://news.stack.network">News APIs</a></td>
+		<td align="center" width="30%"><a href="http://news.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://news.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://payments.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-payments.png" width="40" /></a>
+		</td>
+		<td><a href="http://payments.stack.network">Payment APIs</a></td>
+		<td align="center" width="30%"><a href="http://payments.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://payments.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://photos.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-photos.png" width="40" /></a>
+		</td>
+		<td><a href="http://photos.stack.network">Photo APIs</a></td>
+		<td align="center" width="30%"><a href="http://photos.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://photos.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://places.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-places.png" width="40" /></a>
+		</td>
+		<td><a href="http://places.stack.network">Places APIs</a></td>
+		<td align="center" width="30%"><a href="http://places.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://places.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://search.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-search.png" width="40" /></a>
+		</td>
+		<td><a href="http://search.stack.network">Search APIs</a></td>
+		<td align="center" width="30%"><a href="http://search.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://search.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://sharing.economy.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-sharing-economy.png" width="40" /></a>
+		</td>
+		<td><a href="http://sharing.economy.stack.network">Sharing Economy APIs</a></td>
+		<td align="center" width="30%"><a href="http://sharing.economy.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://sharing.economy.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://shipping.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-shipping.png" width="40" /></a>
+		</td>
+		<td><a href="http://shipping.stack.network">Shipping APIs</a></td>
+		<td align="center" width="30%"><a href="http://shipping.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://shipping.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://sms.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-sms.png" width="40" /></a>
+		</td>
+		<td><a href="http://sms.stack.network">SMS APIs</a></td>
+		<td align="center" width="30%"><a href="http://sms.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://sms.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://social.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-social.png" width="40" /></a>
+		</td>
+		<td><a href="http://social.stack.network">Social APIs</a></td>
+		<td align="center" width="30%"><a href="http://social.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://social.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://space.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-space.png" width="40" /></a>
+		</td>
+		<td><a href="http://space.stack.network">Space APIs</a></td>
+		<td align="center" width="30%"><a href="http://space.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://space.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://storage.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-storage.png" width="40" /></a>
+		</td>
+		<td><a href="http://storage.stack.network">Storage APIs</a></td>
+		<td align="center" width="30%"><a href="http://storage.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://storage.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://travel.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-travel.png" width="40" /></a>
+		</td>
+		<td><a href="http://travel.stack.network">Travel APIs</a></td>
+		<td align="center" width="30%"><a href="http://travel.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://travel.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://university.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-university.png" width="40" /></a>
+		</td>
+		<td><a href="http://university.stack.network">University APIs</a></td>
+		<td align="center" width="30%"><a href="http://university.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://university.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://users.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-users.png" width="40" /></a>
+		</td>
+		<td><a href="http://users.stack.network">Users APIs</a></td>
+		<td align="center" width="30%"><a href="http://users.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://users.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://videos.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-videos.png" width="40" /></a>
+		</td>
+		<td><a href="http://videos.stack.network">Video APIs</a></td>
+		<td align="center" width="30%"><a href="http://videos.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://videos.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://voice.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-voice.png" width="40" /></a>
+		</td>
+		<td><a href="http://voice.stack.network">Voice APIs</a></td>
+		<td align="center" width="30%"><a href="http://voice.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://voice.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://wearables.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-wearables.png" width="40" /></a>
+		</td>
+		<td><a href="http://wearables.stack.network">Wearables APIs</a></td>
+		<td align="center" width="30%"><a href="http://wearables.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://wearables.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+	<tr>
+		<td width="100" align="center">
+			<a href="http://weather.stack.network"><img src="https://s3.amazonaws.com/kinlane-productions/api-stack/icons/bw-weather.png" width="40" /></a>
+		</td>
+		<td><a href="http://weather.stack.network">Weather APIs</a></td>
+		<td align="center" width="30%"><a href="http://weather.stack.network">{"View Research"}</a></td>
+		<td align="center" width="15%"><a href="http://weather.stack.network/blog.xml"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="25" /></a></td>
+		<td align="center" width="10%"></td>
+	</tr>
+</table>
+<br />
+<p>It is important to remember, that all of my research sites, are actually machine readable projects, that run as Github repositories, and as I research the space, and gather more information, I publish to different areas. My research is constantly evolving, and being updated, and as you navigate my research, you are walking through my live workshop.</p>
+<p>If you find a mess anywhere, please let me know via the Github issues for each project, or via Twitter and email if you need.</p>
+
+
+  		<br />
+  		<!-- 3scale -->
+  		<p align="center">
+    		<a href="http://apis.how/ake3nxbapm" target="_blank" title="API Infrastructure From 3Scale">
+    		    <img src="https://s3.amazonaws.com/kinlane-productions/api-service-providers/3Scale/empowered-by-3scale.png" width="350" style="padding-bottom: 25px;" />
+    		</a>
+  		</p>
+  		<!-- 3scale -->
+  		<br />
+
+      <div class="footer">
+        <ul>
+          <li><a href="/">API 100K View</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/partners/">Partners</a></li>
+          <li><a href="http://apisjson.org">APIs.json</a></li>
+          <li><a href="http://kinlane.com/">About Kin Lane</a></li>
+          <li><a href="/branding-guidelines.html">Branding Guidelines</a></li>
+          <li><a href="http://apievangelist.com/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-1119465-51']);
+	  _gaq.push(['_setDomainName', 'apievangelist.com']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+	<!-- Google Code for API Evangelist visitors (for 3Scale Partnership) -->
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	var google_conversion_id = 964245031;
+	var google_conversion_label = "U2foCJGT0wkQp-zkywM";
+	var google_custom_params = window.google_tag_params;
+	var google_remarketing_only = true;
+	/* ]]> */
+	</script>
+
+	<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+	</script>
+	<noscript>
+	<div style="display:inline;">
+	<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/964245031/?value=1.000000&amp;label=U2foCJGT0wkQp-zkywM&amp;guid=ON&amp;script=0"/>
+	</div>
+	</noscript>
+
+    <script type="text/javascript">
+
+        function listSponsors()
+            {
+            $.getJSON('https://s3.amazonaws.com/kinlane-productions/json/sponsors.json', function(data) {
+                $.each(data['sponsors'], function(key, val) {
+                var template = $('#parterListingTemplate').html();
+                var html = Mustache.to_html(template, val);
+                $('#partnerListingContainer').append(html);
+                });
+            });
+        	}
+
+        listSponsors();
+
+    </script>
+
+  </body>
+</html>
